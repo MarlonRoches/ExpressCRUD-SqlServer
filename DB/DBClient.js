@@ -16,13 +16,33 @@ async function SQL_Connect() {
 
 }
 
-async function usp_registrar() {
+async function usp_registrar(body) {
     
+    var result = await queryNoRows(`exec dbo.[usp_registrar] 
+    '${body.documentoidentidad}','${body.nombres}',
+    '${body.telefono}','${body.correo}','${body.ciudad}'`)
+
+    if(result === false)
+    {
+        return Respuesta("Error en la consulta", null)
+    }else
+    return Respuesta("Usuario Agregado exitosamente", result) ;
 
 
 }
-async function usp_modificar() {
+async function usp_modificar(body) {
     
+    var result = await queryNoRows(`exec dbo.[usp_modificar] 
+    '${body.idusuario}',
+    '${body.documentoidentidad}',
+    '${body.nombres}',
+    '${body.telefono}','${body.correo}','${body.ciudad}'`)
+
+    if(result === false)
+    {
+        return Respuesta("Error en la consulta", null)
+    }else
+    return Respuesta("Usuario Agregado exitosamente", result) ;
 
 
 }
@@ -39,13 +59,26 @@ async function usp_obtener(id) {
 }
 
 async function usp_listar() {
-    
+    var result = await query(`exec dbo.usp_listar`)
+
+    if(result === false)
+    {
+        return Respuesta("Error en la consulta", null)
+    }else
+    return Respuesta("Lista obtenida", result) ;
 
 
 }
 
-async function usp_eliminar() {
+async function usp_eliminar(id) {
     
+    var result = await queryNoRows(`exec dbo.usp_eliminar ${id}`)
+
+    if(result === false)
+    {
+        return Respuesta("Error en la consulta", null)
+    }else
+    return Respuesta("Usuario Eliminado", result) ;
 
 
 }
@@ -53,7 +86,7 @@ async function usp_eliminar() {
 
 async function queryNoRows(query) {
     // Ejecuta la consulta y devuelve true or false
-    var request  =- new mssql.Request();
+    var request  = new mssql.Request();
     try {
         var result = await request.query(query)
         if (result.rowsAffected[0]>0) {
@@ -95,11 +128,27 @@ function Respuesta(message, data) {
     }
 }
 
+
+async function usp_IngresarProducto(body) {
+    
+    var result = await queryNoRows(`exec dbo.[usp_IngresarProducto] 
+    '${body.Nombre}',${body.Precio},
+    ${body.Agotado}`)
+
+    if(result === false)
+    {
+        return Respuesta("Error en la consulta", null)
+    }else
+    return Respuesta("Usuario Agregado exitosamente", result) ;
+
+
+}
 module.exports = {
     SQL_Connect:SQL_Connect,
     usp_registrar:usp_registrar,
     usp_modificar:usp_modificar,
     usp_obtener:usp_obtener,
     usp_listar:usp_listar,
-    usp_eliminar:usp_eliminar
+    usp_eliminar:usp_eliminar,
+    usp_IngresarProducto:usp_IngresarProducto
 }
