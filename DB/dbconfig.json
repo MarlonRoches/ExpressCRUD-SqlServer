@@ -1,0 +1,12 @@
+{
+    "user": "DBPRUEBAS_User",
+    "password": "chango12345678",
+    "server": "127.0.0.1",
+    "database": "DBPRUEBAS",
+    "options": {
+      "trustServerCertificate": true,
+      "trustedConnection": true,
+      "enabledArithAbort": true
+    },
+    "port": 1434
+  }

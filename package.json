@@ -1,0 +1,26 @@
+{
+  "name": "expresscrud-sqlserver",
+  "version": "1.0.0",
+  "description": "Template para API Express con SQL Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarlonRoches/ExpressCRUD-SqlServer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarlonRoches/ExpressCRUD-SqlServer/issues"
+  },
+  "homepage": "https://github.com/MarlonRoches/ExpressCRUD-SqlServer#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mssql": "^8.1.2",
+    "nodemon": "^2.0.18"
+  }
+}
